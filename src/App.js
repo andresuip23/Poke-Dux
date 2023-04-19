@@ -1,13 +1,15 @@
 import { Col } from 'antd';
+import { connect } from 'react-redux';
 import './App.css';
 import Searcher from './components/searcher';
 import PokeCard from './components/PokeCard';
 import PokeList from './components/PokeList';
 import { useEffect, useState } from 'react';
 import  getPokemons  from './api';
+import { setPokemons as setPokemonsActions } from './actions';
 
-function App() {
-const [pokemons, setPokemons] = useState([]);
+function App({pokemons,setPokemons}) {
+
 
   useEffect(()=>{
     const fetchPokemons = async() => {
@@ -25,9 +27,18 @@ const [pokemons, setPokemons] = useState([]);
       <Col span={8} offset={8}>
         <Searcher/>
       </Col>
-      <PokeList/>
+      <PokeList pokemon={pokemons}/>
     </div>
   );
 }
 
-export default App;
+
+const mapStateToProps=(state=>({
+  pokemons:state.pokemons,
+}));
+
+const mapDistpatchToProps=(dispatch=>({
+  setPokemons:(value)=>dispatch(setPokemonsActions(value))
+}));
+
+export default connect(mapStateToProps, mapDistpatchToProps) (App);

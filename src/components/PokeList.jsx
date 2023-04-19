@@ -2,10 +2,11 @@ import PokeCard from "./PokeCard";
 import '../styles/PokeList.css'
 
 
-function PokeList({pokemons}) {
+function PokeList({pokemon}) {
+    console.log(pokemon);
     return ( 
         <div className="PokeList">
-            {pokemons.map((pokemon)=>(<PokeCard/>))}
+            {pokemon.map((pokemon)=>(<PokeCard name={pokemon.name}/>))}
         </div>
      );
 }

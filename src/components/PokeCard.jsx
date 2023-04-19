@@ -6,12 +6,12 @@ import React from "react";
 
 
 
-function PokeCard() {
+function PokeCard({name}) {
     return ( 
         <Card
             style={{
             }}
-            title='Pikachu'
+            title={name}
             cover={<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/132.png" alt=""/>}
             extra={<StarOutlined/>}
        >
